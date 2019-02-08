@@ -27,9 +27,12 @@
         background-repeat: none;
         margin: 0 auto;
         border-radius: 16px;
-        padding: 16px;
+        padding:16px 16px 52px;
         position: relative;
         box-shadow: 0 17px 60px #9ed1ea;
+    }
+    .hide {
+        opacity: 0;
     }
 </style>
 <div class="container">
@@ -43,11 +46,11 @@
         <form style="display: flex;flex-direction: column;height: 100%;">
             <div style="flex-grow: 1"><input type="text" id="name" value="" name="name" placeholder="例)マルマル株式会社" style="width: 100%;height: 1.8em;font-size: 24px;text-align: center;border-radius: 999px;box-shadow: none;border: 4px solid #dedede"/></div>
             <div id="qrcode" style="display: block;width: 120px;margin-left: calc(100% - 120px);margin-bottom: 10px"></div>
-                <input type="text" id="surl" value="" placeholder="例)https://bit.ly/akshd" name="qrlink" style="width: 100%;height: 1.8em;font-size: 24px;text-align: center;border-radius: 999px;box-shadow: none;border: 4px solid #dedede"/>
+                <input type="text" id="surl" value="s" placeholder="例)https://bit.ly/akshd" name="qrlink" style="width: 100%;height: 1.8em;font-size: 24px;text-align: center;border-radius: 999px;box-shadow: none;border: 4px solid #dedede"/>
 
 
 
-            <a id="button" value="このPDFをダウンロードする" style="width: 80px;height: 80px;padding: 13px 15px;background: red;border-radius: 999px;margin: 10px auto -50px;">
+            <a id="button" class="hide" value="このPDFをダウンロードする" style="width: 80px;height: 80px;padding: 13px 15px;background: #01e2b9;border-radius: 999px;position: absolute;bottom: -40px;left: 50%;transform: translateX(-50%);box-shadow: 0 10px 20px rgba(1, 226, 185, 0.38);">
                 <img alt="ダウンロード" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAABcRAAAXEQHKJvM/AAAClUlEQVRoge1a7VHDMAwVHP+bEcoElAnaEdgARoANGKEjZIQwAWECygawQTqBOXPKEYTs6LlK6AHvLnf5suQXPVv+CIUQpjiWIYQ6hNCFr6j5mbvPKUjcKASG6PgdV78nH2z8sCKiZ6O1SyLaeXk+9WRBRNuJ3h2FZ0S0aOyJ6JbPY8UX4vk5Eb16OD/zMMKolHtXRNTyeazwo3i+9CLiLS2JdnDd2oqUYWois+EQaVXcLnosC2zEMpvBdezFuqLaFPTZVQhhO5IresiyY+jYdjV1HqlY6xfG90/kdzOWe+FImaODtpEGIHEILtiXGQiR+IXWM5DosRbtJwuUiMQDDzXuOPmhiGWe+IhysvjUATSoVmmom8HzldIB5Bp7x2X6Z9GWRGutn2ce2fEXtERmz+/+yKBRy8wrcW0hkyIhbRFEFJCWFvqQmFv0MpP3pZyGcxgNG2v90GSotZMcGcu9FAlz+yghEjPuDiAzdqRI7NDsjjruJZYaniBkUiQ6RFIlROIXahLOUTIpEkM0SFQQIhYSPbYZO1vATuNNpAKc96gVO3WBHVNUrHnkytyff+KaiOrBdc33UNh8HyCrSkQs1ZvVmUhovZPsSEzyKpWVZjxHxkoiJb9ReVmkpYVWmyt0PPTQRrESuYmTZntcXg6yQiNjSXawvLxkZSVjzdiwvMakZZWVhCYzZB6Oy8tZVqnIwGMnVF5TyEqzAy/voPLKSatUVhJd4aIbJK85iJSiUWaaSSK5JVO5ur6fmYgGbcX/A8ja72LmdS0ICJGnqbcGFJgXBREikcS9Vw2NuLcS+TX7I/9Ejg1/cutNbpPNAfN2HkLkunDOPQv+28ixIUck/nrxdkT1fRv8DvIN3n8H/Rh+h7SI6B0Uhkb0Ld+nygAAAABJRU5ErkJggg==" >
             </a>
         </form>
@@ -65,6 +68,12 @@
     $(document).ready(function () {
         if (jsPDF && jsPDF.version) {
             $('#dversion').text('Version ' + jsPDF.version);
+        }
+    });
+
+    $(window).ready(function() {
+        if($('#surl').val() != ""){
+            $('#button').removeClass('hide')
         }
     });
 </script>
