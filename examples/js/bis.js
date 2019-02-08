@@ -1,14 +1,10 @@
-var qrcode = new QRCode("qrcode");
+var qrcode = new QRCode("qrcode",{
+    width: 120,
+    height: 120,
+});
 
 function makeCode () {
     var elText = document.getElementById("surl");
-
-    if (!elText.value) {
-        alert("Input a text");
-        elText.focus();
-        return;
-    }
-
     qrcode.makeCode(elText.value);
 }
 
